@@ -6,19 +6,18 @@ find_package(PkgConfig REQUIRED)
 find_package(glfw3 REQUIRED GLFW)
 find_package(OpenGL REQUIRED)
 
-set(SRCS
-    imgui_impl_glfw_gl3.cpp
-    main.cpp)
-
+include_directories(/usr/local/include)
 include_directories(../..)
 include_directories(../libs/gl3w)
 
-link_directories(../libs/gl3w)
+add_library(imgui_glfw_gl3 imgui_impl_glfw_gl3.cpp)
 
-add_executable(opengl3_example ${SRCS})
+link_directories(../libs/gl3w)
+add_executable(opengl3_example main.cpp)
 
 set(LIBS
     imgui
+    imgui_glfw_gl3
     glfw
     gl3w
     ${OpenGL_LIBRARY})
