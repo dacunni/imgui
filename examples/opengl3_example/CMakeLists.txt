@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.6)
 
-PROJECT(opengl3_example)
+project(opengl3_example)
 
 find_package(PkgConfig REQUIRED)
 find_package(glfw3 REQUIRED GLFW)
@@ -13,16 +13,18 @@ set(SRCS
     ../../imgui.cpp
     ../../imgui_demo.cpp
     ../../imgui_draw.cpp
-    ../libs/gl3w/GL/gl3w.c
     main.cpp)
 
 include_directories(../..)
 include_directories(../libs/gl3w)
 
+link_directories(../libs/gl3w)
+
 add_executable(opengl3_example ${SRCS})
 
 set(LIBS
     glfw
+    gl3w
     ${OpenGL_LIBRARY})
 
 target_link_libraries(opengl3_example ${LIBS})
